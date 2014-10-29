@@ -19,15 +19,27 @@ class WhoWhat(generics.ListCreateAPIView):
     queryset = ToTake.objects.all()
 
 
-class Person(generics.ListCreateAPIView):
+class People(generics.ListCreateAPIView):
     model = Person
-    serializer_class = PersonSerializer
+    serializer_class = PeopleSerializer
     queryset = Person.objects.all()
 
 
-class Pet(generics.ListCreateAPIView):
+class PersonList(generics.RetrieveUpdateAPIView):
+    model = Person
+    serializer_class = PeopleSerializer
+    queryset = Person.objects.all()
+
+
+class Pets(generics.ListCreateAPIView):
     model = Pet
-    serializer_class = PetSerializer
+    serializer_class = PetsSerializer
+    queryset = Pet.objects.all()
+
+
+class PetList(generics.RetrieveUpdateAPIView):
+    model = Pet
+    serializer_class = PetsSerializer
     queryset = Pet.objects.all()
 
 
@@ -35,3 +47,21 @@ class Supply(generics.ListCreateAPIView):
     model = Supply
     serializer_class = SupplySerializer
     queryset = Supply.objects.all()
+
+
+class SupplyList(generics.RetrieveUpdateAPIView):
+    model = Supply
+    serializer_class = SupplySerializer
+    queryset = Supply.objects.all()
+
+
+class Route(generics.ListCreateAPIView):
+    model = Route
+    serializer_class = RouteSerializer
+    queryset = Route.objects.all()
+
+
+class Stop(generics.ListCreateAPIView):
+    model = Stop
+    serializer_class = StopSerializer
+    queryset = Stop.objects.all()
