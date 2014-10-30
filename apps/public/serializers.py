@@ -14,6 +14,7 @@ class WhoWhatSerializer(serializers.ModelSerializer):
 
 class PeopleSerializer(serializers.ModelSerializer):
     class Meta:
+        depth = 2
         model = Person
 
     def get_supply(self, obj):
@@ -22,6 +23,7 @@ class PeopleSerializer(serializers.ModelSerializer):
 
 class PetsSerializer(serializers.ModelSerializer):
     class Meta:
+        depth = 2
         model = Pet
 
     def get_supply(self, obj):
