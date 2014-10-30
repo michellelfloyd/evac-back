@@ -7,5 +7,9 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+<<<<<<< Updated upstream
     url(r'^', include('apps.public.urls')),
+=======
+
+>>>>>>> Stashed changes
 )
