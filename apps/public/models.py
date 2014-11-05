@@ -34,9 +34,12 @@ class Person(models.Model):
         ('F', 'Female'),
     )
     parent = models.ForeignKey('ToTake')
-    name = models.CharField(max_length=50)
-    age = models.IntegerField(max_length=3)
-    gender = models.CharField(max_length=1, choices=GENDER)
+    name = models.CharField(max_length=50, blank=True, null=True)
+    birthMonth = models.IntegerField(max_length=2, blank=True, null=True)
+    birthYear = models.IntegerField(max_length=4, blank=True, null=True)
+    gender = models.CharField(max_length=1, choices=GENDER, blank=True, null=True)
+    relationship = models.CharField(max_length=50, blank=True, null=True)
+    specialConditions = models.CharField(max_length=50, blank=True, null=True)
     supplies = models.ManyToManyField('Supply')
 
     def __unicode__(self):
@@ -49,8 +52,12 @@ class Person(models.Model):
 
 class Pet(models.Model):
     parent = models.ForeignKey('ToTake')
-    name = models.CharField(max_length=50)
-    type = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, blank=True, null=True)
+    type = models.CharField(max_length=50, blank=True, null=True)
+    breed = models.CharField(max_length=50, blank=True, null=True)
+    age = models.IntegerField(max_length=3, blank=True, null=True)
+    weight = models.IntegerField(max_length=3, blank=True, null=True)
+    preference = models.CharField(max_length=50, blank=True, null=True)
     supplies = models.ManyToManyField('Supply')
 
     def __unicode__(self):
@@ -75,6 +82,7 @@ class Route(models.Model):
 class Stop(models.Model):
     name = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
+    phone = models.IntegerField(max_length=10)
     type = models.CharField(max_length=50)
 
     def __unicode__(self):
