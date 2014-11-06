@@ -30,14 +30,14 @@ class ToTake(models.Model):
 
 class Person(models.Model):
     GENDER = (
-        ('M', 'Male'),
-        ('F', 'Female'),
+        ('Male', 'M'),
+        ('Female', 'F'),
     )
     parent = models.ForeignKey('ToTake')
     name = models.CharField(max_length=50, blank=True, null=True)
     birthMonth = models.IntegerField(max_length=2, blank=True, null=True)
     birthYear = models.IntegerField(max_length=4, blank=True, null=True)
-    gender = models.CharField(max_length=1, choices=GENDER, blank=True, null=True)
+    gender = models.CharField(max_length=6, choices=GENDER, blank=True, null=True)
     relationship = models.CharField(max_length=50, blank=True, null=True)
     specialConditions = models.CharField(max_length=50, blank=True, null=True)
     supplies = models.ManyToManyField('Supply')
@@ -58,7 +58,7 @@ class Pet(models.Model):
     age = models.IntegerField(max_length=3, blank=True, null=True)
     weight = models.IntegerField(max_length=3, blank=True, null=True)
     preference = models.CharField(max_length=50, blank=True, null=True)
-    supplies = models.ManyToManyField('Supply')
+    supplies = models.ManyToManyField('Supply', blank=True, null=True)
 
     def __unicode__(self):
         return self.name
