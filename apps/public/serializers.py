@@ -37,6 +37,7 @@ class SupplySerializer(serializers.ModelSerializer):
 
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
+        depth = 2
         model = Route
 
 
