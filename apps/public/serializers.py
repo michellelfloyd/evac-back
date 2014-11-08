@@ -13,6 +13,10 @@ class WhoWhatSerializer(serializers.ModelSerializer):
 
 
 class PeopleSerializer(serializers.ModelSerializer):
+
+    parent = serializers.PrimaryKeyRelatedField(required=False)
+    supplies = serializers.PrimaryKeyRelatedField(many=True, required=False)
+
     class Meta:
         depth = 2
         model = Person

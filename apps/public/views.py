@@ -31,6 +31,12 @@ class PersonList(generics.ListCreateAPIView):
     queryset = Person.objects.all()
 
 
+class AddPerson(generics.CreateAPIView):
+    model = Person
+    serializer_class = PeopleSerializer
+    queryset = Person.objects.all()
+
+
 class PetDetail(generics.RetrieveUpdateAPIView):
     model = Pet
     serializer_class = PetsSerializer
