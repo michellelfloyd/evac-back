@@ -52,12 +52,13 @@ class Person(models.Model):
 
 
 class Pet(models.Model):
-    parent = models.ForeignKey('ToTake')
+    parent = models.ForeignKey('ToTake', blank=True, null=True)
     name = models.CharField(max_length=50, blank=True, null=True)
     type = models.CharField(max_length=50, blank=True, null=True)
     breed = models.CharField(max_length=50, blank=True, null=True)
     age = models.IntegerField(max_length=3, blank=True, null=True)
     weight = models.IntegerField(max_length=3, blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
     preference = models.CharField(max_length=50, blank=True, null=True)
     supplies = models.ManyToManyField('Supply', blank=True, null=True)
 
