@@ -49,6 +49,12 @@ class PetList(generics.ListCreateAPIView):
     queryset = Pet.objects.all()
 
 
+class AddPets(generics.CreateAPIView):
+    model = Pet
+    serializer_class = PetsSerializer
+    queryset = Pet.objects.all()
+
+
 class SupplyDetail(generics.RetrieveUpdateAPIView):
     model = Supply
     serializer_class = SupplySerializer
