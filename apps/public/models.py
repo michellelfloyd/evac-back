@@ -44,6 +44,8 @@ class Person(models.Model):
     supplies = models.ManyToManyField('Supply', blank=True, null=True)
 
     def __unicode__(self):
+        if self.name is None:
+            return ""
         return self.name
 
     class Meta:
