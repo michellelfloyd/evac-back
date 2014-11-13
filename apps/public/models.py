@@ -55,6 +55,7 @@ class Pet(models.Model):
     parent = models.ForeignKey('ToTake', blank=True, null=True)
     name = models.CharField(max_length=50, blank=True, null=True)
     type = models.CharField(max_length=50, blank=True, null=True)
+    count = models.CharField(max_length=3, blank=True, null=True)
     breed = models.CharField(max_length=50, blank=True, null=True)
     age = models.IntegerField(max_length=3, blank=True, null=True)
     weight = models.IntegerField(max_length=3, blank=True, null=True)
