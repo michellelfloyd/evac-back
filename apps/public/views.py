@@ -31,6 +31,12 @@ class PersonList(generics.ListCreateAPIView):
     queryset = Person.objects.all()
 
 
+class PersonPOST(generics.ListCreateAPIView):
+    model = Person
+    serializer_class = PeoplePOSTSerializer
+    queryset = Person.objects.all()
+
+
 class AddPerson(generics.CreateAPIView):
     model = Person
     serializer_class = PeopleSerializer
@@ -77,3 +83,9 @@ class StopDetail(generics.ListCreateAPIView):
     model = Stop
     serializer_class = StopSerializer
     queryset = Stop.objects.all()
+
+
+class SpecialConditions(generics.ListCreateAPIView):
+    model = SpecialConditions
+    serializer_class = SpecialConditionsSerializer
+    queryset = SpecialConditions.objects.all()
