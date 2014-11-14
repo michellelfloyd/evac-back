@@ -13,6 +13,6 @@ urlpatterns = patterns(
     url(r'^supply-list/(?P<pk>[0-9]+)$', SupplyDetail.as_view(), name='supply-list'),
     url(r'^route/$', RouteList.as_view(), name='route-list'),
     url(r'^add-person/$', AddPerson.as_view(), name='people-list'),
-    url(r'add-pet/$', AddPets.as_view(), name='pets-list'),
+    url(r'^add-pet/$', AddPets.as_view(), name='pets-list'),
     url(r'^special-conditions/$', SpecialConditions.as_view(), name='special-conditions'),
 )
