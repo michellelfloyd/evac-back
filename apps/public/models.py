@@ -40,7 +40,7 @@ class Person(models.Model):
     birthYear = models.IntegerField(max_length=4, blank=True, null=True)
     gender = models.CharField(max_length=6, choices=GENDER, blank=True, null=True)
     relationship = models.CharField(max_length=50, blank=True, null=True)
-    specialConditions = models.CharField(max_length=50, blank=True, null=True)
+    special_conditions = models.ManyToManyField('SpecialConditions')
     supplies = models.ManyToManyField('Supply', blank=True, null=True)
 
     def __unicode__(self):
@@ -49,6 +49,13 @@ class Person(models.Model):
     class Meta:
         verbose_name = "Person"
         verbose_name_plural = "People"
+
+
+class SpecialConditions(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
 
 
 class Pet(models.Model):

@@ -25,6 +25,11 @@ class PeopleSerializer(serializers.ModelSerializer):
         return SupplySerializer(obj.supply.all(), many=True).data
 
 
+class PeoplePOSTSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Person
+
+
 class PetsSerializer(serializers.ModelSerializer):
     class Meta:
         depth = 2
@@ -48,3 +53,8 @@ class RouteSerializer(serializers.ModelSerializer):
 class StopSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stop
+
+
+class SpecialConditionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SpecialConditions
