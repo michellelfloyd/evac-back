@@ -14,7 +14,7 @@ class WhoWhatSerializer(serializers.ModelSerializer):
 
 class PeopleSerializer(serializers.ModelSerializer):
 
-    parent = serializers.PrimaryKeyRelatedField(required=False)
+    parent = serializers.PrimaryKeyRelatedField()
     supplies = serializers.PrimaryKeyRelatedField(many=True, required=False)
 
     class Meta:
@@ -26,6 +26,10 @@ class PeopleSerializer(serializers.ModelSerializer):
 
 
 class PetsSerializer(serializers.ModelSerializer):
+
+    parent = serializers.PrimaryKeyRelatedField()
+    supplies = serializers.PrimaryKeyRelatedField(many=True, required=False)
+
     class Meta:
         depth = 2
         model = Pet

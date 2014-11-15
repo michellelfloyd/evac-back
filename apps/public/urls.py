@@ -4,6 +4,7 @@ from .views import *
 urlpatterns = patterns(
     'apps.public.views',
 
+    url(r'^evac-plan/$', EvacPlanList.as_view(), name='evac-plan-list'),
     url(r'^who-what/$', WhoWhat.as_view(), name='who-what-list'),
     url(r'^people/$', PersonList.as_view(), name='people-list'),
     url(r'^people/(?P<pk>[0-9]+)$', PersonDetail.as_view(), name='people-list'),
@@ -13,5 +14,6 @@ urlpatterns = patterns(
     url(r'^supply-list/(?P<pk>[0-9]+)$', SupplyDetail.as_view(), name='supply-list'),
     url(r'^route/$', RouteList.as_view(), name='route-list'),
     url(r'^add-person/$', AddPerson.as_view(), name='people-list'),
-    url(r'add-pet/$', AddPets.as_view(), name='pets-list'),
+    url(r'^add-pet/$', AddPets.as_view(), name='pets-list'),
+    url(r'^pet-detail/$', PetDetail.as_view(), name='pet-detail'),
 )
