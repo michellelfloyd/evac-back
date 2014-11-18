@@ -34,7 +34,7 @@ class Person(models.Model):
         ('Male', 'M'),
         ('Female', 'F'),
     )
-    parent = models.ForeignKey('ToTake', blank=True, null=True)
+    parent = models.ForeignKey('ToTake')
     name = models.CharField(max_length=50, blank=True, null=True)
     birthMonth = models.IntegerField(max_length=2, blank=True, null=True)
     birthYear = models.IntegerField(max_length=4, blank=True, null=True)
@@ -61,7 +61,7 @@ class SpecialConditions(models.Model):
 
 
 class Pet(models.Model):
-    parent = models.ForeignKey('ToTake', blank=True, null=True)
+    parent = models.ForeignKey('ToTake')
     name = models.CharField(max_length=50, blank=True, null=True)
     type = models.CharField(max_length=50, blank=True, null=True)
     count = models.CharField(max_length=3, blank=True, null=True)
@@ -73,7 +73,10 @@ class Pet(models.Model):
     supplies = models.ManyToManyField('Supply', blank=True, null=True)
 
     def __unicode__(self):
+        if self.name is None:
+            return ""
         return self.name
+
 
     class Meta:
         verbose_name = "Pet"
