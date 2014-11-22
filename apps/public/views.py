@@ -95,3 +95,8 @@ class SpecialConditions(generics.ListCreateAPIView):
     model = SpecialConditions
     serializer_class = SpecialConditionsSerializer
     queryset = SpecialConditions.objects.all()
+
+class MapRouteList(generics.ListCreateAPIView):
+    model = MapRoute
+    serializer_class = MapRouteSerializer
+    queryset = MapRoute.objects.all()
