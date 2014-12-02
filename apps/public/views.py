@@ -3,8 +3,22 @@ from serializers import *
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import permissions
+from django.contrib.auth.models import User
 
 # Create your views here.
+
+
+class UserList(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    model = User
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    model = User
+    serializer_class = UserSerializer
 
 
 class EvacPlanList(generics.ListCreateAPIView):
