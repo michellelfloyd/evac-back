@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from serializers import *
 from rest_framework import generics, status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import permissions
 from django.contrib.auth.models import User
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework.authentication import TokenAuthentication
+from django.http import HttpResponse
+import json
 
 # Create your views here.
 
@@ -40,6 +46,8 @@ class PersonDetail(generics.RetrieveUpdateAPIView):
 
 
 class PersonList(generics.ListCreateAPIView):
+    authentication_classes = (SessionAuthentication, TokenAuthentication)
+    permission_classes = (IsAuthenticated,)
     model = Person
     serializer_class = PeopleSerializer
     queryset = Person.objects.all()
@@ -109,3 +117,39 @@ class SpecialConditions(generics.ListCreateAPIView):
     model = SpecialConditions
     serializer_class = SpecialConditionsSerializer
     queryset = SpecialConditions.objects.all()
+
+
+class ObtainUserAuthToken(ObtainAuthToken):
+
+    def post(self, request):
+        # print "ObtainUserAuthToken"
+        email = request.DATA['username']
+        lowercase_email = email.lower()
+        request.DATA['username'] = lowercase_email
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            token, created = Token.objects.get_or_create(user=serializer.object['user'])
+
+
+            user = {
+                'id': serializer.object['user'].id,
+                'username': serializer.object['user'].username,
+                'first_name': serializer.object['user'].first_name,
+                'token': token.key
+            }
+            # import pdb; pdb.set_trace()
+            return Response(user)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(('GET',))
+def obtain_user_from_token(r, token):
+    auth = TokenAuthentication()
+    response = auth.authenticate_credentials(token)
+
+    user = {
+        'id': response[0].id,
+        'username': response[0].username,
+        'first_name': response[0].first_name,
+        'token': token,
+    }
+    return HttpResponse(json.dumps(user))

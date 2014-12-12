@@ -23,3 +23,10 @@ urlpatterns = patterns(
     url(r'^pet-detail/$', PetDetail.as_view(), name='pet-detail'),
 
 )
+urlpatterns += patterns('',
+    # url(r'^api-token-auth/', 'rest_framework.authtoken.views.obtain_auth_token')
+    url(r'^api-token-auth/', ObtainUserAuthToken.as_view()),
+    url(r'^user-token/(?P<token>.+)$', obtain_user_from_token),
+)
+
+urlpatterns = format_suffix_patterns(urlpatterns)
