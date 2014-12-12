@@ -160,3 +160,12 @@ class EmergencySupply(Supply):
         verbose_name = "Emergency Supply"
         verbose_name_plural = "Emergency Supplies"
 
+class MapRoute(models.Model):
+    name = models.CharField(max_length=200)
+    origin = models.CharField(max_length=200)
+    destination = models.CharField(max_length=200)
+    waypoints = models.TextField()
+    waypoint_names = models.TextField()
+    travel_mode = models.CharField(max_length=200)
+
+

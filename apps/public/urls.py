@@ -21,7 +21,7 @@ urlpatterns = patterns(
     url(r'^add-pet/$', AddPets.as_view(), name='pets-list'),
     url(r'^special-conditions/$', SpecialConditions.as_view(), name='special-conditions'),
     url(r'^pet-detail/$', PetDetail.as_view(), name='pet-detail'),
-
+    url(r'^map-route/$', MapRouteList.as_view(), name='map-route-list'),
 )
 urlpatterns += patterns('',
     # url(r'^api-token-auth/', 'rest_framework.authtoken.views.obtain_auth_token')

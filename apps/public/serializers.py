@@ -69,3 +69,7 @@ class StopSerializer(serializers.ModelSerializer):
 class SpecialConditionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SpecialConditions
+
+class MapRouteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MapRoute
