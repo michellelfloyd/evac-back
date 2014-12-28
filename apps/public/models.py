@@ -1,6 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
+
+@receiver(post_save, sender=User)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+
 
 
 # class User(models.Model):
@@ -14,12 +24,12 @@ from django.db import models
 
 
 class EvacPlan(models.Model):
-
-    pass
+    user = models.ForeignKey(User)
 
     class Meta:
         verbose_name = "Evac Plan"
         verbose_name_plural = "Evac Plans"
+
 
 class ToTake(models.Model):
     evacPlan = models.OneToOneField('EvacPlan')
@@ -149,4 +159,13 @@ class EmergencySupply(Supply):
     class Meta:
         verbose_name = "Emergency Supply"
         verbose_name_plural = "Emergency Supplies"
+
+class MapRoute(models.Model):
+    name = models.CharField(max_length=200)
+    origin = models.CharField(max_length=200)
+    destination = models.CharField(max_length=200)
+    waypoints = models.TextField()
+    waypoint_names = models.TextField()
+    travel_mode = models.CharField(max_length=200)
+
 
